@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hq.dao.BookDAO">
+
+	<insert id="addBook">
+		insert into hq_book(name,price,place,phone) values(#{name},#{price},#{place},#{phone})
+	</insert>
+	
+	
+	<insert id="addError">
+		insert into error_record(name,price,place,phone) values(#{name},#{price},#{place},#{phone})
+	</insert>
+	
+	<select id="list" resultType="Book">
+		select * from hq_book
+		<where>
+			<if test="mohu1!=null and mohu1!=''">
+				and name like concat('%',#{mohu1},'%')
+			</if>
+		</where>
+		<if test="num %2==0">
+			order by price asc
+		</if>
+		<if test="num %2==1">
+			order by price desc
+		</if>
+	</select>
+</mapper>

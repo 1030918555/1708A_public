@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+		
+	<!--  扫描注解 -->
+	<context:component-scan base-package="com.hq.controller"></context:component-scan>	
+	<!-- json 解析 -->
+	<mvc:annotation-driven></mvc:annotation-driven>
+	
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/jsp/"></property>
+		<property name="suffix" value=".jsp"></property>
+	</bean>
+	<!-- 第5步：配置上传 -->
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+    	<property name="defaultEncoding" value="UTF-8"/>
+    	<!-- Set the maximum allowed size (in bytes) before uploads are refused. -1 indicates no limit (the default). -->
+    	<property name="maxUploadSize" value="1024000"/>
+    	<property name="maxInMemorySize" value="1024000"/>
+    	<property name="uploadTempDir" value="temp"/>
+    	<!-- <property name="resolveLazily" value="true"/> -->
+    </bean>
+	
+	<!-- JSR-303 验证 需要配置 此项 -->
+<!--    <bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean"> -->
+<!--          <property name="providerClass" value="org.hibernate.validator.HibernateValidator" /> -->
+<!--          <property name="validationMessageSource" ref="validatemessageSource" /> -->
+<!--    	</bean> -->
+	  <!-- 配置国际化资源文件 -->
+<!--     <bean id="validatemessageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource"> -->
+<!--          <property name="basename" value="classpath:i18n" /> -->
+<!--          <property name="fileEncodings" value="utf-8" /> -->
+<!--          <property name="cacheSeconds" value="120" /> -->
+<!--     </bean> -->
+		
+<!-- 	<mvc:interceptors> -->
+<!-- 		<mvc:interceptor> -->
+<!-- 			<mvc:mapping path="/**"/> -->
+<!-- 			<mvc:exclude-mapping path="/login.do"/> -->
+<!-- 			<bean class="com.hq.util.interceptor.MyLoginInterceptor"/> -->
+<!-- 		</mvc:interceptor> -->
+<!-- 		<mvc:interceptor> -->
+<!-- 			<mvc:mapping path="/**"/> -->
+<!-- 			<bean class="com.hq.util.interceptor.MyExecuteInterceptor"></bean> -->
+<!-- 		</mvc:interceptor> -->
+<!-- 	</mvc:interceptors>	 -->
+	
+</beans>
