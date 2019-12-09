@@ -9,8 +9,8 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.hq.bean.Book;
 import com.hq.bean.Error_record;
-import com.hq.common.utils.NumUtil;
-import com.hq.common.utils.StringUtil;
+import com.hq.common.util.NumUtil;
+import com.hq.common.util.StringUtil;
 import com.hq.service.BookService;
 
 public class AddInfoTest{
